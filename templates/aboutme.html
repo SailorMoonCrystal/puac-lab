@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "index.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About me</title>
-</head>
-
-<body>
-    <h1>About me </h1>
+{% block body %}
+<section class="text-center container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto section-title">
+            <h1 class="fw-light">About me</h1>
+        </div>
+    </div>
+</section>
+<div>
     <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
         velit..."</p>
     <p> "There is no one who loves pain itself, who seeks after it and wants to have it, simply because
         it is pain..."</p>
-    <p> <a href="{{ url_for('index') }}">Back to Home</a></p>
-    
-</body>
-
-</html>
+</div>
+{% endblock %}

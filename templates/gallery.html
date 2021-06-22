@@ -1,40 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "index.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-</head>
+{% block body %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<section class="text-center container">
+    <div class="col-lg-6 col-md-8 mx-auto section-title">
+        <h1 class="fw-light">Gallery</h1>
+        <p class="lead text-muted">This is gallery of funny cats. Photos are duplicated. </p>
+    </div>
+</section>
 
-<body>
-    <h1>Gallery</h1>
-    <div class="row">
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-3 row-album">
+            <div class="col" id="pop">
+                <img onclick="openModal();currentSlide(1)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(2)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat1.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(3)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat2.jpg') }}" alt="Cat">
+            </div>
         </div>
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+        <div class="row row-cols-3 row-album">
+            <div class="col">
+                <img onclick="openModal();currentSlide(4)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat3.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(5)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat4.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(6)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat5.jpg') }}" alt="Cat">
+            </div>
         </div>
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+        <div class="row row-cols-3 row-album">
+            <div class="col">
+                <img onclick="openModal();currentSlide(7)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat6.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(8)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat7.jpg') }}" alt="Cat">
+            </div>
+            <div class="col">
+                <img onclick="openModal();currentSlide(9)" class="hover-shadow"
+                    src="{{ url_for('static', filename='cat8.jpg') }}" alt="Cat">
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+
+        <div class="mySlides">
+            <div class="numbertext">1 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat.jpg') }}">
         </div>
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat1.jpg') }}">
         </div>
-        <div class="col-sm-4">
-            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat" width="400px" height="400px"><br>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat2.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">4 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat3.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">5 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat4.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">6 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat5.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">7 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat6.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">8 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat7.jpg') }}">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">9 / 9</div>
+            <img class="img-modal" src="{{ url_for('static', filename='cat8.jpg') }}">
+        </div>
+
+        <!-- Next/previous controls -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Caption text -->
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <!-- Thumbnail image controls -->
+        <div class="row">
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat.jpg') }}" onclick="currentSlide(1)"
+                    alt="Cat 1">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat1.jpg') }}" onclick="currentSlide(2)"
+                    alt="Cat 2">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat2.jpg') }}" onclick="currentSlide(3)"
+                    alt="Cat 3">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat3.jpg') }}" onclick="currentSlide(4)"
+                    alt="Cat 4">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat4.jpg') }}" onclick="currentSlide(5)"
+                    alt="Cat 5">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat5.jpg') }}" onclick="currentSlide(6)"
+                    alt="Cat 6">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat6.jpg') }}" onclick="currentSlide(7)"
+                    alt="Cat 7">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat7.jpg') }}" onclick="currentSlide(8)"
+                    alt="Cat 8">
+            </div>
+
+            <div class="column">
+                <img class="demo" src="{{ url_for('static', filename='cat8.jpg') }}" onclick="currentSlide(9)"
+                    alt="Cat 9">
+            </div>
         </div>
     </div>
-    <div <p> <a href="{{ url_for('index') }}">Back to Home</a></p>
-</body>
+</div>
 
-</html>
+
+{% endblock %}
