@@ -29,6 +29,11 @@
 
 <script>
 
+    $(document).ready(function () {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    });
+
     // Open the Modal
     function openModal() {
         document.getElementById("myModal").style.display = "block";
