@@ -155,3 +155,21 @@ img.hover-shadow {
     background-color: #373636;
     height: 50px;
 }
+
+.card {
+    width: 80%;
+    margin: 5px;
+}
+
+.card-form {
+    padding: 30px;
+    padding-bottom: 3px;
+}
+
+input, textarea {
+    width: 100%;
+}
+
+input[type="sumbit"] {
+    color: #373636;
+}

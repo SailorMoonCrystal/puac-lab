@@ -1,5 +1,8 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
-from forms import ContactForm
+from forms import ContactForm, GuestBookForm
+from datetime import datetime
+from azure.AzureDB import AzureDB
+
 
 app = Flask(__name__)
 app.secret_key = "secretKey"
@@ -30,6 +33,22 @@ def contact():
 @app.route("/gallery")
 def gallery():
     return render_template("gallery.html")
+
+
+@app.route("/guestbook", methods=["GET", "POST"])
+def guestbook():
+    form = GuestBookForm()
+    date = datetime.now()
+    print(date)
+    str_date = date.strftime("%d/%m/%Y %H:%M")
+    with AzureDB() as a:
+        data = a.azureGetData()
+        if request.method == "POST":
+            nick = request.form["name"]
+            message = request.form["message"]
+            a.azureAddData(nick, message, date.strftime("%Y-%m-%dT%H:%M:%S"))
+            return redirect(url_for("guestbook"))
+    return render_template("guestbook.html", form=form, date=str_date, data=data)
 
 
 if __name__ == "__main__":
