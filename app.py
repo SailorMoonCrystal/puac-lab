@@ -45,9 +45,9 @@ def guestbook():
         if request.method == "POST":
             name = request.form["name"]
             message = request.form["message"]
-            if request.form["id"]:
+            try:
                 a.azureUpdateData(request.form["id"], name, message)
-            else:
+            except KeyError:
                 a.azureAddData(name, message, date.strftime("%Y-%m-%dT%H:%M:%S"))
             return redirect(url_for("guestbook"))
     return render_template("guestbook.html", form=form, date=str_date, data=data)
