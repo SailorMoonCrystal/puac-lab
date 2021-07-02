@@ -32,7 +32,7 @@ class AzureDB:
 
     def azureGetData(self):
         try:
-            self.cursor.execute("SELECT nick,message,date from guestbook")
+            self.cursor.execute("SELECT id,name,message,date from guestbook")
             data = self.cursor.fetchall()
             return data
         except pypyodbc.DatabaseError as exception:
@@ -40,10 +40,10 @@ class AzureDB:
             print(exception)
             exit(1)
 
-    def azureAddData(self, nick, message, date):
+    def azureAddData(self, name, message, date):
         try:
             self.cursor.execute(
-                f"INSERT into guestbook (nick,message,date) values ('{nick}', '{message}', '{date}')"
+                f"INSERT into guestbook (name,message,date) values ('{name}', '{message}', '{date}')"
             )
             self.conn.commit()
         except pypyodbc.DatabaseError as exception:
@@ -51,8 +51,20 @@ class AzureDB:
             print(exception)
             exit(1)
 
+    def azureDeleteData(self, id):
+        try:
+            self.cursor.execute(f"DELETE FROM guestbook WHERE id = '{id}'")
+            self.conn.commit()
+        except pypyodbc.DatabaseError as exception:
+            print("Failed to execute query")
+            print(exception)
+            exit(1)
 
-# zakomentowana funkcja usuwająca rekord z bazy gdzie name = Adam
-# def azureDeleteData(self):
-# self.cursor.execute("DELETE FROM data WHERE name = 'Adam'")
-# self.conn.commit()
+    def azureUpdateData(self, id, name, message):
+        try:
+            self.cursor.execute(f"UPDATE guestbook SET name='{name}', message='{message}' WHERE id = '{id}'")
+            self.conn.commit()
+        except pypyodbc.DatabaseError as exception:
+            print("Failed to execute query")
+            print(exception)
+            exit(1)

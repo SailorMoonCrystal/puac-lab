@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, TextAreaField, SubmitField, DateTimeField
+from wtforms import TextField, TextAreaField, SubmitField, DateTimeField, DecimalField
 
 
 class UserForm(FlaskForm):
@@ -12,6 +12,7 @@ class ContactForm(UserForm):
 
 
 class GuestBookForm(UserForm):
+    id = DecimalField()
     date = DateTimeField("Date")
    
 
